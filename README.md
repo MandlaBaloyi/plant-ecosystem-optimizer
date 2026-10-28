@@ -1,4 +1,22 @@
-# Plant Ecosystem Optimizer
+<p align="center">
+  <img src="docs/img/banner.svg" alt="Plant Ecosystem Optimizer: Root Cause Analysis, the Entelect Hack IT 2026 challenge" width="100%">
+</p>
+
+<p align="center">
+  <img alt="python" src="https://img.shields.io/badge/python-standard%20library%20only-3776AB?logo=python&logoColor=white">
+  <img alt="dependencies" src="https://img.shields.io/badge/dependencies-0-brightgreen">
+  <img alt="tests" src="https://img.shields.io/badge/tests-222-brightgreen">
+  <img alt="score" src="https://img.shields.io/badge/final%20score-1.02%20billion-166534">
+  <img alt="licence" src="https://img.shields.io/badge/licence-MIT-blue">
+</p>
+
+<p align="center">
+  <a href="#the-problem-in-one-paragraph">The problem</a> &middot;
+  <a href="#results">Results</a> &middot;
+  <a href="#what-actually-mattered">What mattered</a> &middot;
+  <a href="#repository-layout">Layout</a> &middot;
+  <a href="#running-it">Run it</a>
+</p>
 
 A solver for **Root Cause Analysis**, the Entelect Hack&lt;IT&gt; 2026 optimisation
 challenge. You are given a grid, 31 plant species with interlocking growth rules,
@@ -9,6 +27,16 @@ on one specific final tick.
 Final score: **just over 1 billion** across the four levels.
 
 ---
+
+<table align="center">
+  <tr>
+    <td align="center"><b>1.02 B</b><br>final score,<br>four levels</td>
+    <td align="center"><b>31</b><br>plant species,<br>interlocking rules</td>
+    <td align="center"><b>222</b><br>tests</td>
+    <td align="center"><b>0</b><br>dependencies</td>
+    <td align="center"><b>20</b><br>plantings<br>per tick</td>
+  </tr>
+</table>
 
 ## The problem in one paragraph
 
@@ -52,7 +80,7 @@ docs/              full analysis: mechanics, scoring, unlock tree, results
 logs/              the REAL evaluation logs returned by the official engine
 problem-statement/ the provided specification and datasets
 submissions/       generated solution.json + packaged zip per level
-tests/             143-test suite (stdlib unittest, no pytest)
+tests/             222-test suite (stdlib unittest, no pytest)
 ```
 
 ## Running it
@@ -71,6 +99,22 @@ Everything is deterministic: the same input always produces the same
 `solution.json`, which the competition rules required.
 
 ---
+
+## Results
+
+Final scores, from the official evaluation logs in [`logs/`](logs/):
+
+| Level | Score | Entropy | Density | Species | Entropy ceiling |
+|---|---:|---:|---:|---:|---:|
+| 1 | 209,636,426 | 0.3463 | 0.7200 | 4 | 0.4037 |
+| 2 | 291,811,331 | 0.3958 | 0.8670 | 6 | 0.5218 |
+| 3 | 245,661,742 | 0.2981 | 0.8129 | 10 | 0.6705 |
+| 4 | 276,528,784 | 0.3437 | 0.8823 | 9 | 0.6398 |
+| **Total** | **1,023,638,283** | | | | |
+
+The competition benchmark was 4 billion, and the leading entries finished near 1.4 to 1.7 billion. Density was never the problem, because a fast spreader fills around 85% of the map whatever you do. Entropy was, and the gap between what was achieved and what the species count allows is where the remaining score was:
+
+<p align="center"><img src="docs/img/entropy_vs_ceiling.svg" alt="Entropy achieved against the ceiling on each level: 86%, 76%, 44% and 54% of the ceiling" width="100%"></p>
 
 ## What actually mattered
 
@@ -122,4 +166,10 @@ caps — because those rule out whole branches of the search space.
 
 ---
 
+## Third-party material
 
+[`problem-statement/`](problem-statement/) holds the specification and the datasets that Entelect provided to participants of the Hack&lt;IT&gt; 2026 Root Cause Analysis challenge. They are kept here only so that the engine and the tests can run. They remain Entelect's and are not covered by this repository's licence.
+
+## Licence
+
+[MIT](LICENSE) for the code and the analysis in this repository, except for the third-party material above.
